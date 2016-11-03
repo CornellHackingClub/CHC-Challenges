@@ -41,7 +41,7 @@ def home():
     if session.get('_fresh'): del session['_fresh']
     session.permanent = True
     app.permanent_session_lifetime = timedelta(minutes=120)
-    session['Flag'] = os.environ['FLAG'] #make env variable
+    session['Flag'] =  os.e#make env variable
     return response
 
  
@@ -84,4 +84,4 @@ def load_user(userid):
     
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=1111)
