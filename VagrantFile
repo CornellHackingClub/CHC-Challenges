@@ -1,0 +1,28 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.synced_folder "./Shell", "/home/vagrant/Shell"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+    vb.cpus = "2"
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get update
+    sudo apt-get install -y git curl wget htop build-essential gdb valgrind
+    apt-get install g++-3.3
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8.4 100
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-3.3 50
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8.4 100
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-3.3 50
+    update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.8.4 100
+    update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-3.3 50
+    update-alternatives --set g++ /usr/bin/g++-3.3
+    update-alternatives --set gcc /usr/bin/gcc-3.3
+    update-alternatives --set cpp-bin /usr/bin/cpp-3.3
+  SHELL
+end
+
