@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # config
 app.config.update(
-    DEBUG = True,
+    DEBUG = False,
     SECRET_KEY = 'LOLOLOL_I_Am_So_Secret'
 )
 
