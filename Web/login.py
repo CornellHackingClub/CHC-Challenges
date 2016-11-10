@@ -41,7 +41,7 @@ def home():
     if session.get('_fresh'): del session['_fresh']
     session.permanent = True
     app.permanent_session_lifetime = timedelta(minutes=120)
-    session['Flag'] =  os.environ['FLAG'] #make env variable
+    session['Flag'] =  os.environ['WEB_FLAG'] #make env variable
     return response
 
  
